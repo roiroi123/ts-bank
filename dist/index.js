@@ -6,9 +6,17 @@ class BankAccount {
         return this.balance;
     }
     deposit(amount) {
+        if (amount < 0) {
+            alert("Cant Deopist this Amount");
+            return;
+        }
         return this.balance += amount;
     }
     withdraw(amount) {
+        if (amount < 0) {
+            alert("Cant Withdraw this Amount");
+            return;
+        }
         if (amount < this.balance) {
             return this.balance -= amount;
         }
@@ -27,7 +35,8 @@ const inputWithdraw = document.getElementById("inputWithdraw");
 balanceBtn.addEventListener("click", () => {
     container.innerHTML = `<p>Your Current Balance is : ${account.myBalance()}$</p>`;
 });
-depositBtn.addEventListener("click", (e) => {
+depositBtn.addEventListener("click", () => {
+    console.log(inputDeposit.value);
     account.deposit(Number(inputDeposit.value));
     container.innerHTML = `<p>Current Balance After Deposit : ${account.myBalance()}$</p>`;
 });
